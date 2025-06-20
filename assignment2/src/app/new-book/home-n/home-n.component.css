@@ -1,0 +1,18 @@
+.container {
+  background-color: #fffdf5; /* soft light gray */
+  padding: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+h1 {
+  color: #28a745; /* Bootstrap primary/nav blue */
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #333;
+}
