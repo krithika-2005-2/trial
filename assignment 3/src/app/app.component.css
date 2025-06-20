@@ -1,0 +1,22 @@
+/* Navbar brand logo */
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
+}
+
+/* Active nav link styling */
+a.nav-link.active {
+  font-weight: 600;
+  color: #fff !important;
+  text-decoration: underline;
+}
+
+/* Hover effect for nav links */
+.nav-link {
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
