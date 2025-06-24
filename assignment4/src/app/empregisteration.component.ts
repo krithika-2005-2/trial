@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { EmployeeService } from './employee.service';
+import { Router, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-empregisteration',
@@ -31,17 +32,31 @@ export class EmpregisterationComponent {
     password: ''
   };
 
-  constructor(private empService: EmployeeService) {}
+  constructor(private empService: EmployeeService,
+    private router: Router
+  ) {}
 
   onSubmit(form: NgForm) {
     
 
     if (form.valid) {
-      console.log('Sending employee data:', this.employee);
-      this.empService.addEmployee(this.employee).subscribe({
+ const apiEmployee = {
+      ...this.employee, // spread existing fields
+      dateOfBirth: this.employee.dateOfBirth + 'T00:00:00', // Add time part to date
+      designation: Number(this.employee.designation), // Ensure integer
+      gender: Number(this.employee.gender),           // Ensure integer
+      basicPay: Number(this.employee.basicPay),       // Ensure integer/number
+    needTransportation: this.employee.needTransportation  
+    };
+
+  console.log('Sending employee data:', apiEmployee);
+
+          this.empService.addEmployee(apiEmployee).subscribe({
+
         next: (res: any) => {
           alert('Employee registered successfully');
           form.resetForm(); 
+          this.router.navigate(['/emplist']);
         },
         error: (err: any) => {
           console.error(err);

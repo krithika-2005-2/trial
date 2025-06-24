@@ -123,8 +123,8 @@
         <select name="needTransportation" [(ngModel)]="employee.needTransportation"
           required #needTransportation="ngModel">
           <option value="">--Select--</option>
-          <option value="1">Yes</option>
-          <option value="0">No</option>
+           <option [ngValue]="true">Yes</option>
+  <option [ngValue]="false">No</option>
         </select>
         <div *ngIf="needTransportation.invalid && needTransportation.touched">Selection required</div>
       </div>

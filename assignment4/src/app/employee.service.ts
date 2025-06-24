@@ -27,18 +27,12 @@ export class EmployeeService {
     return this.http.get<any>(`${this.apiUrl}/${id}`, { headers: this.getAuthHeaders() });
   }
 
-  //addEmployee(employee: any): Observable<any> {
-    //return this.http.post(this.apiUrl, employee, { headers: this.getAuthHeaders() });
-  //}
   addEmployee(employee: any): Observable<any> {
-    const token = localStorage.getItem('token');
+    const headers = this.getAuthHeaders();  // ✅ reusing the same header method
     console.log('Sending employee:', employee);
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json'
-    });
   
-    return this.http.post('https://internapi1.zerone-consulting.net/api/Employee', employee, { headers });
+  
+    return this.http.post(this.apiUrl, employee, { headers });
   }
   
 
