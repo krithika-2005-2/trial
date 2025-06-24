@@ -1,0 +1,113 @@
+<!-- register.component.html -->
+<h2>Employee Registration</h2>
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+
+  <div>
+    <label>First Name:</label>
+    <input
+      name="firstName"
+      [(ngModel)]="employee.firstName"
+      #firstNameRef="ngModel"
+      required
+      maxlength="50"
+      placeholder="Please enter your First Name"
+    >
+    <div class="error" *ngIf="firstNameRef.invalid && firstNameRef.touched">
+      <small *ngIf="firstNameRef.errors?.['required']">First Name is required.</small>
+      <small *ngIf="firstNameRef.errors?.['maxlength']">Max 50 characters allowed.</small>
+    </div>
+  </div>
+  
+  
+
+  <div>
+    <label>Last Name:</label>
+    <input name="lastName" [(ngModel)]="employee.lastName" required maxlength="50" placeholder="Please enter your Last Name">
+  </div>
+
+  <div>
+    <label>Date of Birth:</label>
+    <input type="date" name="dateOfBirth" [(ngModel)]="employee.dateOfBirth" required>
+  </div>
+
+  <div>
+    <label>Personal Email:</label>
+    <input name="personalEmail" [(ngModel)]="employee.personalEmail" required maxlength="100" email placeholder="Please enter your Email">
+  </div>
+
+  <div>
+    <label>Mobile Number:</label>
+    <input name="mobileNumber" [(ngModel)]="employee.mobileNumber" required maxlength="20" placeholder="Please enter your Mobile Number">
+  </div>
+
+  <div>
+    <label>Postal Address:</label>
+    <textarea name="postalAddress" [(ngModel)]="employee.postalAddress" required maxlength="250" placeholder="Please enter your Address"></textarea>
+  </div>
+
+  <select name="gender" [(ngModel)]="employee.gender" required>
+    <option value="" disabled selected>Select Gender</option>
+    <option [value]="1">Male</option>
+    <option [value]="2">Female</option>
+    <option [value]="3">Others</option>
+  </select>
+  
+
+  <div>
+    <label>Country:</label>
+    <select name="country" [(ngModel)]="employee.country" required (change)="onCountryChange(employee.country)">
+      <option value="" disabled selected>Select Country</option>
+      <option *ngFor="let country of countries">{{ country }}</option>
+    </select>
+  </div>
+
+  <div>
+    <label>City:</label>
+    <select name="city" [(ngModel)]="employee.city" required>
+      <option value="" disabled selected>Select City</option>
+      <option *ngFor="let city of availableCities">{{ city }}</option>
+    </select>
+  </div>
+
+  <select
+  name="designation"
+  [(ngModel)]="employee.designation"
+  #designationRef="ngModel"
+  required
+>
+  <option value="" disabled selected>Select Designation</option>
+  <option *ngFor="let d of designations" [value]="d.id">{{ d.title }}</option>
+</select> 
+  
+
+  <div>
+    <label>Basic Pay:</label>
+    <input type="number" name="basicPay" [(ngModel)]="employee.basicPay" required min="5000" max="50000" placeholder="Please enter your Basic Pay">
+  </div>
+
+  <div>
+    <label>Username:</label>
+    <input name="username" [(ngModel)]="employee.username" required maxlength="15" placeholder="Please enter your Username">
+  </div>
+
+  <div>
+    <label>Password:</label>
+    <input type="password" name="password" [(ngModel)]="employee.password" required pattern=".{6,}" placeholder="Please enter your Password">
+  </div>
+
+  <div>
+    <label>Confirm Password:</label>
+    <input type="password" name="confirmPassword" [(ngModel)]="employee.confirmPassword" required [pattern]="employee.password" placeholder="Confirm Password">
+    <div *ngIf="employee.confirmPassword && employee.confirmPassword !== employee.password">
+      <small>Passwords do not match.</small>
+    </div>
+  </div>
+
+  <div>
+    <label>Notes:</label>
+    <textarea name="notes" [(ngModel)]="employee.notes" maxlength="250" placeholder="Optional Notes"></textarea>
+  </div>
+
+  <button type="submit" [disabled]="f.invalid">Register</button>
+
+</form>

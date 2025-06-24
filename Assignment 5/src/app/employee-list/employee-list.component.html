@@ -1,0 +1,66 @@
+<div class="list-box">
+  <h3>👥 Employee List</h3>
+
+
+  <table *ngIf="employees.length > 0; else noData">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Username</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Date of Birth</th>
+        <th>Gender</th>
+        <th>Designation</th>
+        <th>Country</th>
+        <th>City</th>
+        <th>Postal Address</th>
+        <th>Basic Pay</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of employees">
+        <td>{{ emp.employeeID }}</td>
+        <td>{{ emp.username }}</td>
+        <td>{{ emp.firstName }} {{ emp.lastName }}</td>
+        <td>{{ emp.personalEmail }}</td>
+        <td>{{ emp.mobileNumber }}</td>
+        <td>{{ emp.dateOfBirth | date: 'yyyy-MM-dd' }}</td>
+        <td>{{ emp.gender == 1 ? 'Male' : 'Female' }}</td>
+        <td>
+          {{
+            emp.designation == 0 ? 'Developer' :
+            emp.designation == 1 ? 'HR' :
+            emp.designation == 2 ? 'Admin' :
+            emp.designation == 3 ? 'Project Manager' :
+            emp.designation == 4 ? 'QA Engineer' :
+            emp.designation == 5 ? 'Business Analyst' : 'Unknown'
+          }}
+        </td>
+        <td>{{ emp.country }}</td>
+        <td>{{ emp.city }}</td>
+        <td>{{ emp.postalAddress }}</td>
+        <td>{{ emp.basicPay }}</td>
+        <td>
+          <button (click)="editEmployee(emp)">✏️ Edit</button>
+          <button (click)="deleteEmployee(emp.employeeID)">🗑️ Delete</button>
+        </td>
+        
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Delete by ID -->
+  <div>
+    <label for="deleteId">Delete by ID:</label>
+    <input type="number" id="deleteId" [(ngModel)]="deleteId" placeholder="Enter Employee ID" />
+    <button (click)="deleteById()">Delete</button>
+    <p *ngIf="deleteMessage">{{ deleteMessage }}</p>
+  </div>
+
+  <ng-template #noData>
+    <p>🚫 No employees found.</p>
+  </ng-template>
+</div>
