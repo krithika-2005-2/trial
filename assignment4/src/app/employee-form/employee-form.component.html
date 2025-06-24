@@ -1,0 +1,39 @@
+<div class="form-container">
+    <h3>{{ isEdit ? '✏️ Edit Employee' : '➕ Add Employee' }}</h3>
+  
+    <form (ngSubmit)="onSubmit()" #empForm="ngForm">
+      <label>First Name:</label>
+      <input type="text" [(ngModel)]="employee.firstName" name="firstName" required />
+  
+      <label>Last Name:</label>
+      <input type="text" [(ngModel)]="employee.lastName" name="lastName" required />
+  
+      <label>Date of Birth:</label>
+      <input type="date" [(ngModel)]="employee.dateOfBirth" name="dob" required />
+  
+      <label>Email:</label>
+      <input type="email" [(ngModel)]="employee.personalEmail" name="email" required />
+  
+      <label>Mobile Number:</label>
+      <input type="text" [(ngModel)]="employee.mobileNumber" name="mobile" required />
+  
+      <label>Gender:</label>
+      <select [(ngModel)]="employee.gender" name="gender" required>
+        <option [value]="1">Male</option>
+        <option [value]="2">Female</option>
+      </select>
+  
+      <label>Designation:</label>
+      <select [(ngModel)]="employee.designation" name="designation" required>
+        <option [value]="0">Developer</option>
+        <option [value]="1">HR</option>
+        <option [value]="2">Admin</option>
+        <option [value]="3">Project Manager</option>
+        <option [value]="4">QA Engineer</option>
+        <option [value]="5">Business Analyst</option>
+      </select>
+  
+      <button type="submit">{{ isEdit ? 'Update' : 'Add' }}</button>
+    </form>
+  </div>
+  
