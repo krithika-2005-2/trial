@@ -1,0 +1,115 @@
+<h3>👤 Employee Registration Form</h3>
+
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="form-container">
+
+  <!-- First Name -->
+  <div class="form-group">
+    <label>🧑 First Name:</label>
+    <input type="text" formControlName="firstName" placeholder="Please enter your first name">
+  </div>
+
+  <!-- Last Name -->
+  <div class="form-group">
+    <label>🧑 Last Name:</label>
+    <input type="text" formControlName="lastName" placeholder="Please enter your last name">
+  </div>
+
+  <!-- Date of Birth -->
+  <div class="form-group">
+    <label>🎂 Date of Birth:</label>
+    <input type="date" formControlName="dateOfBirth">
+  </div>
+
+  <!-- Personal Email -->
+  <div class="form-group">
+    <label>📧 Email:</label>
+    <input type="email" formControlName="personalEmail" placeholder="Please enter your personal email">
+  </div>
+
+  <!-- Mobile Number -->
+  <div class="form-group">
+    <label>📱 Mobile Number:</label>
+    <input type="text" formControlName="mobileNumber" placeholder="Please enter your mobile number">
+  </div>
+
+  <!-- Postal Address -->
+  <div class="form-group">
+    <label>🏠 Postal Address:</label>
+    <input type="text" formControlName="postalAddress" placeholder="Please enter your address">
+  </div>
+
+  <!-- Gender -->
+  <div class="form-group">
+    <label>🚻 Gender:</label>
+    <div class="radio-group">
+      <label><input type="radio" value="Male" formControlName="gender"> Male</label>
+      <label><input type="radio" value="Female" formControlName="gender"> Female</label>
+    </div>
+  </div>
+  <!-- Country -->
+  <div class="form-group">
+    <label>🌍 Country:</label>
+    <select formControlName="country" (change)="onCountryChange(myForm.value.country)">
+      <option value="">Select Country</option>
+      <option *ngFor="let c of countries" [value]="c">{{ c }}</option>
+    </select>
+  </div>
+
+  <!-- City -->
+  <div class="form-group">
+    <label>🏙️ City:</label>
+    <select formControlName="city">
+      <option value="">Select City</option>
+      <option *ngFor="let city of availableCities" [value]="city">{{ city }}</option>
+    </select>
+  </div>
+
+  <!-- Designation -->
+  <div class="form-group">
+    <label>💼 Designation:</label>
+    <select formControlName="designation">
+      <option *ngFor="let d of designations" [value]="d.id">{{ d.title }}</option>
+    </select>
+  </div>
+
+  <!-- Basic Pay -->
+  <div class="form-group">
+    <label>💰 Basic Pay:</label>
+    <input type="number" formControlName="basicPay" placeholder="Please enter your basic pay">
+  </div>
+
+  <!-- Need Transportation -->
+  <div class="form-group">
+    <label>🚌 Need Transportation:</label>
+    <div class="radio-group">
+      <label><input type="radio" [value]="true" formControlName="needTransportation"> Yes</label>
+      <label><input type="radio" [value]="false" formControlName="needTransportation"> No</label>
+    </div>
+  </div>
+  
+
+  <!-- Username -->
+  <div class="form-group">
+    <label>👤 Username:</label>
+    <input type="text" formControlName="username" placeholder="Please Choose a username">
+  </div>
+
+  <!-- Password -->
+  <div class="form-group">
+    <label>🔒 Password:</label>
+    <input type="password" formControlName="password" placeholder="Please Enter password">
+  </div>
+
+  <!-- Notes -->
+  <div class="form-group">
+    <label>📝 Notes:</label>
+    <textarea formControlName="notes" placeholder="Any additional notes"></textarea>
+  </div>
+
+  <!-- Submit Button -->
+  <button type="submit">🚀 Register</button>
+
+  <hr />
+  <h3>📦 Form Data:</h3>
+  <pre>{{ myForm.value | json }}</pre>
+</form>
