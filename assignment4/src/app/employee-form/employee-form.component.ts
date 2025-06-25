@@ -37,15 +37,24 @@ export class EmployeeFormComponent implements OnInit {
       this.isEdit = true;
       this.employeeId = +id;
       this.empService.getEmployeeById(this.employeeId).subscribe({
-        next: (data:any) => {
-          this.employee = data;
+        next: (data: any) => {
+          // Normalize the data from API to be form-compatible
+          this.employee = {
+            ...data,
+            dateOfBirth: data.dateOfBirth ? data.dateOfBirth.substring(0, 10) : '',
+            gender: Number(data.gender),
+            designation: Number(data.designation),
+            basicPay: Number(data.basicPay),
+            needTransportation: data.needTransportation === true, // explicitly ensure boolean
+          };
         },
-        error: (err:any) => {
+        error: (err: any) => {
           console.error('Failed to load employee data', err);
         }
       });
     }
   }
+  
 
   onSubmit(): void {
     if (this.isEdit) {
