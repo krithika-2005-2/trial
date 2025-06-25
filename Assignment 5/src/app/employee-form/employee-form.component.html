@@ -18,10 +18,11 @@
     <input type="text" [(ngModel)]="employee.mobileNumber" name="mobile" required />
 
     <label>Gender:</label>
-    <select [(ngModel)]="employee.gender" name="gender" required>
-      <option [value]="1">Male</option>
-      <option [value]="2">Female</option>
-    </select>
+<select [(ngModel)]="employee.gender" name="gender" required>
+  <option value="1">Male</option>
+  <option value="2">Female</option>
+</select>
+
 
     <label>Designation:</label>
     <select [(ngModel)]="employee.designation" name="designation" required>

@@ -18,7 +18,7 @@ export class EmployeeFormComponent implements OnInit {
     dateOfBirth: '',
     personalEmail: '',
     mobileNumber: '',
-    gender: 1,
+    gender: 'Male',
     designation: 0
   };
 
@@ -38,7 +38,7 @@ export class EmployeeFormComponent implements OnInit {
       this.employeeId = +id;
       this.empService.getEmployeeById(this.employeeId).subscribe({
         next: (data: any) => {
-          // Normalize the data from API to be form-compatible
+         
           this.employee = {
             ...data,
             dateOfBirth: data.dateOfBirth ? data.dateOfBirth.substring(0, 10) : '',
