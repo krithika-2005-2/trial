@@ -1,0 +1,65 @@
+<div class="list-box">
+  <h3>👥 Employee List</h3>
+
+  <div *ngIf="employees.length > 0; else noData" class="card-container">
+    <div
+      class="employee-card"
+      *ngFor="let emp of employees"
+      (mouseenter)="startHover(emp.employeeID)"
+      (mouseleave)="cancelHover(emp.employeeID)"
+      [class.flipped]="hoveredEmployeeId === emp.employeeID && isFlipped"
+    >
+      <div class="card-inner">
+        <!-- Front Side -->
+        <div class="card-front">
+          <h4>{{ emp.firstName }} {{ emp.lastName }}</h4>
+          <p><strong>ID:</strong> {{ emp.employeeID }}</p> 
+          <p><strong>Username:</strong> {{ emp.username }}</p>
+          <p><strong>Email:</strong> {{ emp.personalEmail }}</p>
+          <p><strong>Mobile:</strong> {{ emp.mobileNumber }}</p>
+          <p><strong>Designation:</strong>
+            {{
+              emp.designation == 0 ? 'Developer' :
+              emp.designation == 1 ? 'HR' :
+              emp.designation == 2 ? 'Admin' :
+              emp.designation == 3 ? 'Project Manager' :
+              emp.designation == 4 ? 'QA Engineer' :
+              emp.designation == 5 ? 'Business Analyst' : 'Unknown'
+            }}
+          </p>
+          <div class="action-buttons">
+            <button (click)="editEmployee(emp)">✏️ Edit</button>
+            <button (click)="deleteEmployee(emp.employeeID)">🗑️ Delete</button>
+          </div>
+        </div>
+
+        <!-- Back Side -->
+        <div class="card-back">
+          <p><strong>Postal Address:</strong> {{ emp.postalAddress }}</p>
+          <p><strong>City:</strong> {{ emp.city }}</p>
+          <p><strong>Country:</strong> {{ emp.country }}</p>
+          <p><strong>DOB:</strong> {{ emp.dateOfBirth | date: 'yyyy-MM-dd' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete by ID -->
+<div class="edit-delete-by-id-container">
+  <label for="deleteId">Delete by ID:</label>
+  <input type="number" id="deleteId" [(ngModel)]="deleteId" placeholder="Enter Employee ID" />
+  <button (click)="deleteById()">Delete</button>
+  <p *ngIf="deleteMessage">{{ deleteMessage }}</p>
+</div>
+
+<!-- Edit by ID -->
+<div class="edit-delete-by-id-container">
+  <label for="editId">Edit by ID:</label>
+  <input type="number" id="editId" [(ngModel)]="editId" placeholder="Enter Employee ID" />
+  <button (click)="editById()">Edit</button>
+</div>
+
+  <ng-template #noData>
+    <p>🚫 No employees found.</p>
+  </ng-template>
+</div>

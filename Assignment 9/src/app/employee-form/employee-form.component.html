@@ -1,0 +1,60 @@
+<div class="form-container"> 
+  <h3>{{ isEdit ? '✏️ Edit Employee' : '➕ Add Employee' }}</h3>
+
+  <form (ngSubmit)="onSubmit()" #empForm="ngForm">
+    
+    <label>First Name:</label>
+    <input type="text" [(ngModel)]="employee.firstName" name="firstName" required />
+
+    <label>Last Name:</label>
+    <input type="text" [(ngModel)]="employee.lastName" name="lastName" required />
+
+    <label>Username:</label>
+    <input type="text" [(ngModel)]="employee.username" name="username" required />
+
+    <label>Date of Birth:</label>
+    <input type="date" [(ngModel)]="employee.dateOfBirth" name="dateOfBirth" required />
+
+    <label>Email:</label>
+    <input type="email" [(ngModel)]="employee.personalEmail" name="personalEmail" required />
+
+    <label>Mobile Number:</label>
+    <input type="text" [(ngModel)]="employee.mobileNumber" name="mobileNumber" required />
+
+    <label>Gender:</label>
+    <select [(ngModel)]="employee.gender" name="gender" required>
+      <option [value]="1">Male</option>
+      <option [value]="2">Female</option>
+    </select>
+
+    <label>Designation:</label>
+    <select [(ngModel)]="employee.designation" name="designation" required>
+      <option [value]="0">Developer</option>
+      <option [value]="1">HR</option>
+      <option [value]="2">Admin</option>
+      <option [value]="3">Project Manager</option>
+      <option [value]="4">QA Engineer</option>
+      <option [value]="5">Business Analyst</option>
+    </select>
+
+    <label>Basic Pay:</label>
+    <input type="number" [(ngModel)]="employee.basicPay" name="basicPay" required />
+
+    <label>Transportation Needed:</label>
+    <select [(ngModel)]="employee.needTransportation" name="needTransportation" required>
+      <option [ngValue]="true">Yes</option>
+      <option [ngValue]="false">No</option>
+    </select>
+
+    <label>Postal Address:</label>
+    <textarea [(ngModel)]="employee.postalAddress" name="postalAddress" required></textarea>
+
+    <label>City:</label>
+    <input type="text" [(ngModel)]="employee.city" name="city" required />
+
+    <label>Country:</label>
+    <input type="text" [(ngModel)]="employee.country" name="country" required />
+
+    <button type="submit">{{ isEdit ? 'Update' : 'Add' }}</button>
+  </form>
+</div>
