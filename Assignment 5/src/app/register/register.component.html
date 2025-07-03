@@ -1,7 +1,7 @@
-<!-- register.component.html -->
 <h2>Employee Registration</h2>
 <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
 
+  <!-- First Name -->
   <div>
     <label>First Name:</label>
     <input
@@ -17,97 +17,252 @@
       <small *ngIf="firstNameRef.errors?.['maxlength']">Max 50 characters allowed.</small>
     </div>
   </div>
-  
-  
 
+  <!-- Last Name -->
   <div>
     <label>Last Name:</label>
-    <input name="lastName" [(ngModel)]="employee.lastName" required maxlength="50" placeholder="Please enter your Last Name">
+    <input
+      name="lastName"
+      [(ngModel)]="employee.lastName"
+      #lastNameRef="ngModel"
+      required
+      maxlength="50"
+      placeholder="Please enter your Last Name"
+    >
+    <div class="error" *ngIf="lastNameRef.invalid && lastNameRef.touched">
+      <small *ngIf="lastNameRef.errors?.['required']">Last Name is required.</small>
+      <small *ngIf="lastNameRef.errors?.['maxlength']">Max 50 characters allowed.</small>
+    </div>
   </div>
 
+  <!-- Date of Birth -->
   <div>
     <label>Date of Birth:</label>
-    <input type="date" name="dateOfBirth" [(ngModel)]="employee.dateOfBirth" required>
+    <input
+      type="date"
+      name="dateOfBirth"
+      [(ngModel)]="employee.dateOfBirth"
+      #dobRef="ngModel"
+      required
+    >
+    <div class="error" *ngIf="dobRef.invalid && dobRef.touched">
+      <small *ngIf="dobRef.errors?.['required']">Date of Birth is required.</small>
+    </div>
   </div>
 
+  <!-- Email -->
   <div>
     <label>Personal Email:</label>
-    <input name="personalEmail" [(ngModel)]="employee.personalEmail" required maxlength="100" email placeholder="Please enter your Email">
+    <input
+      name="personalEmail"
+      [(ngModel)]="employee.personalEmail"
+      #emailRef="ngModel"
+      required
+      email
+      maxlength="100"
+      placeholder="Please enter your Email"
+    >
+    <div class="error" *ngIf="emailRef.invalid && emailRef.touched">
+      <small *ngIf="emailRef.errors?.['required']">Email is required.</small>
+      <small *ngIf="emailRef.errors?.['email']">Invalid email format.</small>
+      <small *ngIf="emailRef.errors?.['maxlength']">Max 100 characters allowed.</small>
+    </div>
   </div>
 
+  <!-- Mobile -->
   <div>
     <label>Mobile Number:</label>
-    <input name="mobileNumber" [(ngModel)]="employee.mobileNumber" required maxlength="20" placeholder="Please enter your Mobile Number">
+    <input
+      name="mobileNumber"
+      [(ngModel)]="employee.mobileNumber"
+      #mobileRef="ngModel"
+      required
+      maxlength="20"
+      placeholder="Please enter your Mobile Number"
+    >
+    <div class="error" *ngIf="mobileRef.invalid && mobileRef.touched">
+      <small *ngIf="mobileRef.errors?.['required']">Mobile Number is required.</small>
+      <small *ngIf="mobileRef.errors?.['maxlength']">Max 20 characters allowed.</small>
+    </div>
   </div>
 
+  <!-- Address -->
   <div>
     <label>Postal Address:</label>
-    <textarea name="postalAddress" [(ngModel)]="employee.postalAddress" required maxlength="250" placeholder="Please enter your Address"></textarea>
+    <textarea
+      name="postalAddress"
+      [(ngModel)]="employee.postalAddress"
+      #addressRef="ngModel"
+      required
+      maxlength="250"
+      placeholder="Please enter your Address"
+    ></textarea>
+    <div class="error" *ngIf="addressRef.invalid && addressRef.touched">
+      <small *ngIf="addressRef.errors?.['required']">Address is required.</small>
+      <small *ngIf="addressRef.errors?.['maxlength']">Max 250 characters allowed.</small>
+    </div>
   </div>
 
-  <select name="gender" [(ngModel)]="employee.gender" required>
-    <option value="" disabled selected>Select Gender</option>
-    <option [value]="1">Male</option>
-    <option [value]="2">Female</option>
-    <option [value]="3">Others</option>
-  </select>
-  
+  <!-- Gender -->
+  <div>
+    <label>Gender:</label>
+    <select
+      name="gender"
+      [(ngModel)]="employee.gender"
+      #genderRef="ngModel"
+      required
+    >
+      <option value="" disabled>Select Gender</option>
+      <option [value]="1">Male</option>
+      <option [value]="2">Female</option>
+      <option [value]="3">Others</option>
+    </select>
+    <div class="error" *ngIf="genderRef.invalid && genderRef.touched">
+      <small>Gender is required.</small>
+    </div>
+  </div>
 
+  <!-- Country -->
   <div>
     <label>Country:</label>
-    <select name="country" [(ngModel)]="employee.country" required (change)="onCountryChange(employee.country)">
-      <option value="" disabled selected>Select Country</option>
+    <select
+      name="country"
+      [(ngModel)]="employee.country"
+      #countryRef="ngModel"
+      required
+      (change)="onCountryChange(employee.country)"
+    >
+      <option value="" disabled>Select Country</option>
       <option *ngFor="let country of countries">{{ country }}</option>
     </select>
+    <div class="error" *ngIf="countryRef.invalid && countryRef.touched">
+      <small>Country is required.</small>
+    </div>
   </div>
 
+  <!-- City -->
   <div>
     <label>City:</label>
-    <select name="city" [(ngModel)]="employee.city" required>
-      <option value="" disabled selected>Select City</option>
+    <select
+      name="city"
+      [(ngModel)]="employee.city"
+      #cityRef="ngModel"
+      required
+    >
+      <option value="" disabled>Select City</option>
       <option *ngFor="let city of availableCities">{{ city }}</option>
     </select>
+    <div class="error" *ngIf="cityRef.invalid && cityRef.touched">
+      <small>City is required.</small>
+    </div>
   </div>
 
-  <select
-  name="designation"
-  [(ngModel)]="employee.designation"
-  #designationRef="ngModel"
-  required
->
-  <option value="" disabled selected>Select Designation</option>
-  <option *ngFor="let d of designations" [value]="d.id">{{ d.title }}</option>
-</select> 
-  
+  <!-- Designation -->
+  <div>
+    <label>Designation:</label>
+    <select
+      name="designation"
+      [(ngModel)]="employee.designation"
+      #designationRef="ngModel"
+      required
+    >
+      <option value="" disabled>Select Designation</option>
+      <option *ngFor="let d of designations" [value]="d.id">{{ d.title }}</option>
+    </select>
+    <div class="error" *ngIf="designationRef.invalid && designationRef.touched">
+      <small>Designation is required.</small>
+    </div>
+  </div>
 
+  <!-- Basic Pay -->
   <div>
     <label>Basic Pay:</label>
-    <input type="number" name="basicPay" [(ngModel)]="employee.basicPay" required min="5000" max="50000" placeholder="Please enter your Basic Pay">
+    <input
+      type="number"
+      name="basicPay"
+      [(ngModel)]="employee.basicPay"
+      #payRef="ngModel"
+      required
+      min="5000"
+      max="50000"
+      placeholder="Enter Basic Pay"
+    >
+    <div class="error" *ngIf="payRef.invalid && payRef.touched">
+      <small *ngIf="payRef.errors?.['required']">Basic Pay is required.</small>
+      <small *ngIf="payRef.errors?.['min']">Minimum is 5000.</small>
+      <small *ngIf="payRef.errors?.['max']">Maximum is 50000.</small>
+    </div>
   </div>
 
+  <!-- Username -->
   <div>
     <label>Username:</label>
-    <input name="username" [(ngModel)]="employee.username" required maxlength="15" placeholder="Please enter your Username">
+    <input
+      name="username"
+      [(ngModel)]="employee.username"
+      #usernameRef="ngModel"
+      required
+      maxlength="15"
+      placeholder="Enter Username"
+    >
+    <div class="error" *ngIf="usernameRef.invalid && usernameRef.touched">
+      <small *ngIf="usernameRef.errors?.['required']">Username is required.</small>
+      <small *ngIf="usernameRef.errors?.['maxlength']">Max 15 characters allowed.</small>
+    </div>
   </div>
 
+  <!-- Password -->
   <div>
     <label>Password:</label>
-    <input type="password" name="password" [(ngModel)]="employee.password" required pattern=".{6,}" placeholder="Please enter your Password">
+    <input
+      type="password"
+      name="password"
+      [(ngModel)]="employee.password"
+      #passwordRef="ngModel"
+      required
+      pattern=".{6,}"
+      placeholder="Enter Password"
+    >
+    <div class="error" *ngIf="passwordRef.invalid && passwordRef.touched">
+      <small *ngIf="passwordRef.errors?.['required']">Password is required.</small>
+      <small *ngIf="passwordRef.errors?.['pattern']">Minimum 6 characters.</small>
+    </div>
   </div>
 
+  <!-- Confirm Password -->
   <div>
     <label>Confirm Password:</label>
-    <input type="password" name="confirmPassword" [(ngModel)]="employee.confirmPassword" required [pattern]="employee.password" placeholder="Confirm Password">
-    <div *ngIf="employee.confirmPassword && employee.confirmPassword !== employee.password">
+    <input
+      type="password"
+      name="confirmPassword"
+      [(ngModel)]="employee.confirmPassword"
+      #confirmRef="ngModel"
+      required
+      placeholder="Confirm Password"
+    >
+    <div class="error" *ngIf="confirmRef.invalid && confirmRef.touched">
+      <small *ngIf="confirmRef.errors?.['required']">Confirm Password is required.</small>
+    </div>
+    <div class="error" *ngIf="employee.confirmPassword && employee.password !== employee.confirmPassword">
       <small>Passwords do not match.</small>
     </div>
   </div>
 
+  <!-- Notes -->
   <div>
     <label>Notes:</label>
-    <textarea name="notes" [(ngModel)]="employee.notes" maxlength="250" placeholder="Optional Notes"></textarea>
+    <textarea
+      name="notes"
+      [(ngModel)]="employee.notes"
+      #notesRef="ngModel"
+      maxlength="250"
+      placeholder="Optional Notes"
+    ></textarea>
+    <div class="error" *ngIf="notesRef.errors?.['maxlength'] && notesRef.touched">
+      <small>Max 250 characters allowed.</small>
+    </div>
   </div>
 
+  <!-- Submit -->
   <button type="submit" [disabled]="f.invalid">Register</button>
-
 </form>
