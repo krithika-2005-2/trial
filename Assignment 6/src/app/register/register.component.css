@@ -47,11 +47,6 @@ textarea {
   min-height: 80px;
 }
 
-.error small {
-  color: #e74c3c;
-  font-size: 0.85rem;
-}
-
 button {
   display: block;
   width: 100%;
@@ -70,15 +65,37 @@ button:hover {
   background-color: #0056b3;
 }
 
-.radio-group {
-  display: flex;
-  gap: 1rem;
-  margin-top: 0.5rem;
+.json-preview {
+  max-width: 600px;
+  margin: 2rem auto 0;
+  background-color: #fffbea;
+  border: 1px solid #ffd700;
+  padding: 1rem;
+  border-radius: 8px;
+  font-family: monospace;
+  color: #444;
 }
 
-.radio-group label {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
+.json-preview h3 {
+  margin-top: 0;
+  color: #555;
+  text-align: center;
 }
 
+.json-output {
+  max-width: 400px;
+  margin: 2rem auto 0;
+  background: #fff;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.json-output ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.json-output li {
+  margin-bottom: 0.5rem;
+}
