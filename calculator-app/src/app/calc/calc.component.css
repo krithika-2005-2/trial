@@ -1,0 +1,95 @@
+.calculator-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #f0f0f0, #cccccc);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.calculator-container {
+  width: 400px; /* Not too wide to keep spacing tight */
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.display {
+  background-color: #1e1e1e;
+  color: #ffffff;
+  font-size: 2.2rem;
+  text-align: right;
+  padding: 16px 20px;
+  border-radius: 10px;
+  height: 64px;
+  overflow-x: auto;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns */
+  gap: 12px;
+}
+
+/* Buttons */
+.button-grid .btn {
+  font-size: 1.3rem;
+  padding: 16px 0;
+  border-radius: 10px;
+  font-weight: 500;
+  transition: transform 0.1s ease;
+  box-shadow: inset 0 -1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.button-grid .btn:active {
+  transform: scale(0.96);
+}
+
+/* Colors */
+.btn-warning {
+  background-color: #ff9500;
+  color: #fff;
+  border: none;
+}
+
+.btn-danger {
+  background-color: #ff3b30;
+  color: #fff;
+  border: none;
+}
+
+.btn-success {
+  background-color: #34c759;
+  color: #fff;
+  border: none;
+}
+
+.btn-secondary {
+  background-color: #a5a5a5;
+  color: black;
+  border: none;
+}
+
+.btn-light {
+  background-color: #e5e5e5;
+  color: black;
+  border: none;
+}
+
+/* Special buttons */
+.button-grid .zero {
+  grid-column: span 2;
+  text-align: left;
+  padding-left: 20px;
+}
+
+.button-grid .equals {
+  grid-column: span 1;
+}

@@ -1,0 +1,37 @@
+<div class="calculator-wrapper">
+  <div class="calculator-container">
+    
+    <!-- Display -->
+    <div class="display">
+      {{ resultDisplayed ? display : expression || '0' }}
+    </div>
+
+    <!-- Button Grid -->
+    <div class="button-grid">
+      <button class="btn btn-secondary" (click)="clear()">AC</button>
+      <button class="btn btn-danger" (click)="backspace()">←</button>
+      <button class="btn btn-secondary" (click)="toggleSign()">+/-</button>
+      <button class="btn btn-secondary" (click)="percent()">%</button>
+
+      <button class="btn btn-light" (click)="append('7')">7</button>
+      <button class="btn btn-light" (click)="append('8')">8</button>
+      <button class="btn btn-light" (click)="append('9')">9</button>
+      <button class="btn btn-warning" (click)="setOperator('÷')">÷</button>
+
+      <button class="btn btn-light" (click)="append('4')">4</button>
+      <button class="btn btn-light" (click)="append('5')">5</button>
+      <button class="btn btn-light" (click)="append('6')">6</button>
+      <button class="btn btn-warning" (click)="setOperator('×')">×</button>
+
+      <button class="btn btn-light" (click)="append('1')">1</button>
+      <button class="btn btn-light" (click)="append('2')">2</button>
+      <button class="btn btn-light" (click)="append('3')">3</button>
+      <button class="btn btn-warning" (click)="setOperator('-')">−</button>
+
+      <button class="btn btn-light zero" (click)="append('0')">0</button>
+      <button class="btn btn-light" (click)="append('.')">.</button>
+      <button class="btn btn-warning" (click)="setOperator('+')">+</button>
+      <button class="btn btn-success equals" (click)="calculate()">=</button>
+    </div>
+  </div>
+</div>
