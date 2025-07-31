@@ -1,0 +1,20 @@
+/* Use in both capitals.component.css and countries.component.css or globally in styles.css */
+.box {
+  border: 2px solid #999;
+  padding: 20px;
+  margin: 10px;
+  width: 200px;
+  text-align: center;
+  font-size: 20px;
+  border-radius: 10px;
+  background-color: white;
+  transition: background-color 0.3s;
+}
+
+.correct {
+  background-color: lightgreen;
+}
+
+.wrong {
+  background-color: red;
+}

@@ -1,0 +1,13 @@
+<h4>Capital Cities</h4>
+<div
+  *ngFor="let capital of capitals"
+  cdkDrag
+  [cdkDragData]="capital"
+  class="box"
+  [ngClass]="{
+    correct: capital.matched === true,
+    incorrect: capital.matched === false
+  }"
+>
+  {{ capital.name }}
+</div>

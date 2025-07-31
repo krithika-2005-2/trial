@@ -1,0 +1,14 @@
+<h4>Countries</h4>
+<div
+  *ngFor="let country of countries"
+  cdkDropList
+  (cdkDropListDropped)="onDrop($event, country)"
+  class="box"
+  [ngClass]="{
+    correct: country.isCorrect === true,
+    incorrect: country.isCorrect === false
+  }"
+>
+  {{ country.name }}
+  <div *ngIf="country.matchedCapital">← {{ country.matchedCapital }}</div>
+</div>

@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="side">
+    <app-capitals [capitals]="capitals"></app-capitals>
+  </div>
+  <div class="side">
+    <app-countries
+      [countries]="countries"
+      (dropEvent)="handleDrop($event, $event.country)">
+    </app-countries>
+  </div>
+</div>
